@@ -29,6 +29,10 @@ public class deckClass {
 		return deck.size();
 	}	
 	
+	public List<cardClass> returnDeck(){
+		return deck;
+	}
+	
 	//This adds to a  set, if adding to a set is false then
 	//Something of the same kind already existed, therefore no duplicates
 	//should exist if returns true
@@ -45,8 +49,8 @@ public class deckClass {
 		return true;
 	}
 	
-	public void drawCard() {
-		
+	public cardClass drawCard() {
+		return deck.remove(0);
 	}
 
 	 
