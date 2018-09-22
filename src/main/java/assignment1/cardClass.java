@@ -12,7 +12,9 @@ public class cardClass {
 		this.suitName = cardSuit;
 	}
 	
-	
+	public int returnCardRank() {
+		return this.rank;
+	}
 	public String returnSuitName() {
 		return this.suitName.toString();
 	}
