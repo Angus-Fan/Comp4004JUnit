@@ -31,6 +31,7 @@ public class cardClassTester extends TestCase{
 	//Check if the deck was made correctly (52 cards)
 	public void testDeckConstructor() {
 		deckClass deck = new deckClass();
+		deck.printDeck();
 		assertEquals(52,deck.checkLength());
 	}
 	

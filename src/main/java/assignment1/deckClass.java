@@ -13,9 +13,30 @@ public class deckClass {
 	public deckClass() {
 		for(int i=1;i<14;i++) {
 			
-			for (int z = 0 ; z<4;z++) {
-				cardClass cardToAdd = new cardClass(Integer.toString(i),suits[z]);	
-				deck.add(cardToAdd);
+			for (String suitName : suits) {
+				if(i==1) {
+					cardClass cardToAdd = new cardClass("A",suitName);
+					deck.add(cardToAdd);
+				}
+				else if(i==11) {
+					cardClass cardToAdd = new cardClass("J",suitName);
+					deck.add(cardToAdd);
+				}
+				else if(i==12) {
+					cardClass cardToAdd = new cardClass("Q",suitName);
+					deck.add(cardToAdd);
+				}
+				else if(i==13) {
+					cardClass cardToAdd = new cardClass("K",suitName);
+					deck.add(cardToAdd);
+				}
+				else {
+					cardClass cardToAdd = new cardClass(Integer.toString(i),suitName);	
+					deck.add(cardToAdd);
+					
+				}
+				
+
 			}		
 		}
 		
@@ -32,6 +53,12 @@ public class deckClass {
 	
 	public List<cardClass> returnDeck(){
 		return deck;
+	}
+	
+	public void printDeck() {
+		for( cardClass card : deck) {
+			System.out.println(card.returnCardRank() + card.returnSuitName());
+		}
 	}
 	
 	//This adds to a  set, if adding to a set is false then
