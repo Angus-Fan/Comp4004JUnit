@@ -100,10 +100,17 @@ public class cardClassTester extends TestCase{
 			assertEquals(5,handAI.checkLength());
 			//Check deck again should have 42 cards (47-5 = 42)
 			assertEquals(42,deck.checkLength());
-			handAI.printHand();
+			
 			
 		}
 		
+	}
+	
+	//Test handIdentifier methods
+	public void testDetermineCard() {
+		cardClass testCard = new cardClass("Q","D");
+		handIdentifierClass HIC = new handIdentifierClass();
+		assertEquals(12,HIC.returnValueOfRank(testCard));
 	}
 
 }
