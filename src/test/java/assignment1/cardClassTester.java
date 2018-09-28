@@ -1,5 +1,5 @@
 package assignment1;
-import assignment1.cardClass.cardSuits;
+
 import junit.framework.TestCase;
 
 public class cardClassTester extends TestCase{
@@ -7,24 +7,24 @@ public class cardClassTester extends TestCase{
 	
 	//Test if the cards are made correctly
 	public void testConstructor() {
-		cardClass testCardDiamond = new cardClass(1,cardSuits.Diamond);
-		cardClass testCardSpade = new cardClass(13,cardSuits.Spade);
-		cardClass testCardClub = new cardClass(7,cardSuits.Club);
-		cardClass testCardHeart = new cardClass(12,cardSuits.Heart);
+		cardClass testCardDiamond = new cardClass("1","D");
+		cardClass testCardSpade = new cardClass("K","S");
+		cardClass testCardClub = new cardClass("7","C");
+		cardClass testCardHeart = new cardClass("Q","H");
 		
-		assertEquals("Diamond",testCardDiamond.returnSuitName());
-		assertEquals(1,testCardDiamond.returnCardRank());
+		assertEquals("D",testCardDiamond.returnSuitName());
+		assertEquals("1",testCardDiamond.returnCardRank());
 		
-		assertEquals("Club",testCardClub.returnSuitName());
-		assertEquals(7,testCardClub.returnCardRank());
+		assertEquals("C",testCardClub.returnSuitName());
+		assertEquals("7",testCardClub.returnCardRank());
 		
 
-		assertEquals("Heart",testCardHeart.returnSuitName());
-		assertEquals(12,testCardHeart.returnCardRank());
+		assertEquals("H",testCardHeart.returnSuitName());
+		assertEquals("Q",testCardHeart.returnCardRank());
 		
 		
-		assertEquals("Spade",testCardSpade.returnSuitName());
-		assertEquals(13,testCardSpade.returnCardRank());
+		assertEquals("S",testCardSpade.returnSuitName());
+		assertEquals("K",testCardSpade.returnCardRank());
 
 	}
 	
@@ -43,7 +43,7 @@ public class cardClassTester extends TestCase{
 		
 		//This test card is added to the deck and the set, the set should ignore 
 		//This variable is used to test if there are any duplicates		
-		cardClass testDuplicateCard = new cardClass(1,cardSuits.Diamond);			
+		cardClass testDuplicateCard = new cardClass("1","D");			
 		testDeck.addToDeck(testDuplicateCard);
 		testDeck.addToDeck(testDuplicateCard);
 		assertEquals(false,testDeck.noDuplicates());

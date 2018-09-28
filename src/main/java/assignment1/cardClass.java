@@ -1,21 +1,20 @@
 package assignment1;
 
 public class cardClass {
-	private cardSuits suitName;
-	private int rank;
-	public enum cardSuits{
-		Diamond, Club, Heart, Spade
-	}
+	private String suitName;
+	private String rank;
 	
-	public cardClass(int cardRank,cardSuits cardSuit) {
+	
+	
+	public cardClass(String cardRank,String cardSuit) {
 		this.rank = cardRank;
 		this.suitName = cardSuit;
 	}
 	
-	public int returnCardRank() {
-		return this.rank;
+	public String returnCardRank() {
+		return rank;
 	}
 	public String returnSuitName() {
-		return this.suitName.toString();
+		return suitName;
 	}
 }

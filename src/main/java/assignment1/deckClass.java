@@ -3,17 +3,18 @@ package assignment1;
 
 import java.util.*;
 
-import assignment1.cardClass.cardSuits;
 
 public class deckClass {
 
 	private List<cardClass> deck = new ArrayList<cardClass>();
+	private String[] suits = {"S","H","D","C"};
+	
 	
 	public deckClass() {
 		for(int i=1;i<14;i++) {
 			
-			for (cardSuits suit : cardSuits.values()) {
-				cardClass cardToAdd = new cardClass(i,suit);	
+			for (int z = 0 ; z<4;z++) {
+				cardClass cardToAdd = new cardClass(Integer.toString(i),suits[z]);	
 				deck.add(cardToAdd);
 			}		
 		}
