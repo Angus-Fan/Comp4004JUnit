@@ -31,7 +31,7 @@ public class cardClassTester extends TestCase{
 	//Check if the deck was made correctly (52 cards)
 	public void testDeckConstructor() {
 		deckClass deck = new deckClass();
-		deck.printDeck();
+		//deck.printDeck();
 		assertEquals(52,deck.checkLength());
 	}
 	
@@ -93,19 +93,15 @@ public class cardClassTester extends TestCase{
 			assertEquals(47,deck.checkLength());
 			
 			//Draw cards for the ai hand
+			
 			handClass handAI = new handClass();
 			handAI.drawCards(deck);
+			
 			assertEquals(5,handAI.checkLength());
 			//Check deck again should have 42 cards (47-5 = 42)
 			assertEquals(42,deck.checkLength());
+			handAI.printHand();
 			
-			//Use retain all to check for intersections, size should then be 0
-			hand.returnHand().retainAll(handAI.returnHand());
-			assertEquals(0,hand.checkLength());
-			
-			//Hand should be 0 because of no intersect, and then test handAI with deck
-			deck.returnDeck().retainAll(handAI.returnHand());
-			assertEquals(0,deck.checkLength());		
 		}
 		
 	}

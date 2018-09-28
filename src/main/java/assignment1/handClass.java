@@ -20,5 +20,12 @@ public class handClass {
 	public void setHand(List<cardClass> handToSet) {
 		hand = handToSet;
 	}
+	
+	public void printHand() {
+		for(cardClass cardInHand : hand) {
+			System.out.print(cardInHand.returnCardRank() + cardInHand.returnSuitName() + " ");
+		}
+		System.out.println("");
+	}
 
 }
