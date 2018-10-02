@@ -9,6 +9,10 @@ public class handClass {
 		}
 	}
 	
+	public void addCard(cardClass card) {
+		hand.add(card);
+	}
+	
 	public int checkLength() {
 		return hand.size();
 	}	
@@ -27,5 +31,8 @@ public class handClass {
 		}
 		System.out.println("");
 	}
-
+	
+	public List<cardClass> getHand(){
+		return hand;
+	}
 }

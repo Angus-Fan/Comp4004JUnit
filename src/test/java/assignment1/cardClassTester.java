@@ -1,5 +1,7 @@
 package assignment1;
 
+import java.util.*;
+
 import junit.framework.TestCase;
 
 public class cardClassTester extends TestCase{
@@ -108,9 +110,81 @@ public class cardClassTester extends TestCase{
 	
 	//Test handIdentifier methods
 	public void testDetermineCard() {
-		cardClass testCard = new cardClass("Q","D");
+		//First four cards are same card of different suits
+		cardClass testCard1 = new cardClass("Q","D");
+		cardClass testCard2 = new cardClass("Q","S");
+		cardClass testCard3 = new cardClass("Q","C");
+		cardClass testCard4 = new cardClass("Q","H");
+		//This Queen checks the one of from last (last is King)
+		//First / Last / Middle
+		cardClass testCard5 = new cardClass("A","H");
+		cardClass testCard6 = new cardClass("K","H");
+		cardClass testCard7 = new cardClass("7","H");
 		handIdentifierClass HIC = new handIdentifierClass();
-		assertEquals(12,HIC.returnValueOfRank(testCard));
+		assertEquals(12,HIC.returnValueOfRank(testCard1));
+		assertEquals(12,HIC.returnValueOfRank(testCard2));
+		assertEquals(12,HIC.returnValueOfRank(testCard3));
+		assertEquals(12,HIC.returnValueOfRank(testCard4));
+		assertEquals(1,HIC.returnValueOfRank(testCard5));
+		assertEquals(13,HIC.returnValueOfRank(testCard6));
+		assertEquals(7,HIC.returnValueOfRank(testCard7));
+	
 	}
+	
+	public void testCardListMethods() {
+		handClass testHand = new handClass();
+		handIdentifierClass HIC = new handIdentifierClass();
+		cardClass card1 = new cardClass("A","S");		
+		cardClass card2 = new cardClass("2","C");
+		cardClass card3 = new cardClass("3","D");
+		cardClass card4 = new cardClass("4","H");
+		cardClass card5 = new cardClass("5","C");
+		testHand.addCard(card1);
+		testHand.addCard(card2);
+		testHand.addCard(card3);
+		testHand.addCard(card4);
+		testHand.addCard(card5);
+		assertEquals(1,HIC.findMin(HIC.returnCardRanks(testHand.getHand())));
+		assertEquals(true,HIC.determineStraight(testHand.getHand()));
+		//TEST THE HIGHESTCARD METHOD
+		assertEquals("5",HIC.determineHighestCard(testHand.returnHand()).returnCardRank());
+	    HIC.pairInHand(testHand.returnHand());
+		
+	    Map<String,Integer> checkPairs = new HashMap<String,Integer>();
+	    checkPairs.put("K",2);
+		handClass testHand2 = new handClass();
+		cardClass card6 = new cardClass("K","S");		
+		cardClass card7 = new cardClass("10","C");
+		cardClass card8 = new cardClass("J","D");
+		cardClass card9 = new cardClass("Q","H");
+		cardClass card10 = new cardClass("K","C");
+		testHand2.addCard(card6);
+		testHand2.addCard(card7);
+		testHand2.addCard(card8);
+		testHand2.addCard(card9);
+		testHand2.addCard(card10);
+		assertEquals(10,HIC.findMin(HIC.returnCardRanks(testHand2.getHand())));
+		assertEquals(false,HIC.determineStraight(testHand2.getHand()));
+		//TEST THE HIGHESTCARD METHOD
+		assertEquals("K",HIC.determineHighestCard(testHand2.returnHand()).returnCardRank());
+		//HIC.pairInHand(testHand2.returnHand());
+		assertEquals(checkPairs,HIC.pairInHand(testHand2.returnHand()));
+		
+
+		handClass testHand3 = new handClass();
+		cardClass card11 = new cardClass("A","S");		
+		cardClass card12 = new cardClass("10","C");
+		cardClass card13 = new cardClass("J","D");
+		cardClass card14 = new cardClass("Q","H");
+		cardClass card15 = new cardClass("K","C");
+		testHand3.addCard(card11);
+		testHand3.addCard(card12);
+		testHand3.addCard(card13);
+		testHand3.addCard(card14);
+		testHand3.addCard(card15);
+		assertEquals("A",HIC.determineHighestCard(testHand3.returnHand()).returnCardRank());
+	}
+	
+	
 
 }
