@@ -23,6 +23,42 @@ public class handIdentifierClass {
 		}
 		
 	}
+	
+	public int determineRankOfPairs(List<cardClass> cards) {
+		//Four of a kind  = 5
+		//Full house      = 4
+		//Three of a kind = 3
+		//Two Pair        = 2
+		//Pair            = 1
+		
+		int counter = 0;
+		Map<String,Integer> handResults = pairInHand(cards);
+		//This would be 4 of a kind
+		if(handResults.containsValue(4)) {
+			return 5;
+		}
+		//This would be  a full house
+		else if(handResults.containsValue(3) && handResults.containsValue(2)) {
+			return 4;
+		}
+		else if(handResults.containsValue(3)) {
+			return 3;			
+		}
+		else if(handResults.size()==2) {
+			for(Map.Entry<String, Integer> cardPair : handResults.entrySet()) {
+				if(cardPair.getValue()==2) {
+					counter++;
+				}
+				if(counter==2) {
+					return 2;
+				}
+			}
+		}
+		else if(handResults.size()==1) {
+			return 1;
+		}
+		return 0;
+	}
 	public boolean determineStraight(List<cardClass> cards) {
 		int minRank = 0;
 		int straightCount = 1;

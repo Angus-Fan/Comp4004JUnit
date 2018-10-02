@@ -135,10 +135,10 @@ public class cardClassTester extends TestCase{
 		handClass testHand = new handClass();
 		handIdentifierClass HIC = new handIdentifierClass();
 		cardClass card1 = new cardClass("A","S");		
-		cardClass card2 = new cardClass("2","C");
+		cardClass card2 = new cardClass("2","D");
 		cardClass card3 = new cardClass("3","D");
-		cardClass card4 = new cardClass("4","H");
-		cardClass card5 = new cardClass("5","C");
+		cardClass card4 = new cardClass("4","D");
+		cardClass card5 = new cardClass("5","D");
 		testHand.addCard(card1);
 		testHand.addCard(card2);
 		testHand.addCard(card3);
@@ -148,6 +148,7 @@ public class cardClassTester extends TestCase{
 		assertEquals(true,HIC.determineStraight(testHand.getHand()));
 		//TEST THE HIGHESTCARD METHOD
 		assertEquals("5",HIC.determineHighestCard(testHand.returnHand()).returnCardRank());
+		assertEquals(false,HIC.determineFlush(testHand.returnHand()));
 	    HIC.pairInHand(testHand.returnHand());
 		
 	    Map<String,Integer> checkPairs = new HashMap<String,Integer>();
@@ -166,23 +167,24 @@ public class cardClassTester extends TestCase{
 		assertEquals(10,HIC.findMin(HIC.returnCardRanks(testHand2.getHand())));
 		assertEquals(false,HIC.determineStraight(testHand2.getHand()));
 		//TEST THE HIGHESTCARD METHOD
-		assertEquals("K",HIC.determineHighestCard(testHand2.returnHand()).returnCardRank());
-		//HIC.pairInHand(testHand2.returnHand());
+		assertEquals("K",HIC.determineHighestCard(testHand2.returnHand()).returnCardRank());		
 		assertEquals(checkPairs,HIC.pairInHand(testHand2.returnHand()));
+		assertEquals(false,HIC.determineFlush(testHand2.returnHand()));
 		
 
 		handClass testHand3 = new handClass();
-		cardClass card11 = new cardClass("A","S");		
-		cardClass card12 = new cardClass("10","C");
+		cardClass card11 = new cardClass("A","D");		
+		cardClass card12 = new cardClass("10","D");
 		cardClass card13 = new cardClass("J","D");
-		cardClass card14 = new cardClass("Q","H");
-		cardClass card15 = new cardClass("K","C");
+		cardClass card14 = new cardClass("Q","D");
+		cardClass card15 = new cardClass("K","D");
 		testHand3.addCard(card11);
 		testHand3.addCard(card12);
 		testHand3.addCard(card13);
 		testHand3.addCard(card14);
 		testHand3.addCard(card15);
 		assertEquals("A",HIC.determineHighestCard(testHand3.returnHand()).returnCardRank());
+		assertEquals(true,HIC.determineFlush(testHand3.returnHand()));
 	}
 	
 	
