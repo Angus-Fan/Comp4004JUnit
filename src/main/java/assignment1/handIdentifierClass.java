@@ -25,7 +25,11 @@ public class handIdentifierClass {
 				return 10;
 			}
 		}
-		
+		if(determineFlush(cards)) {
+			if(determineStraight(cards)) {
+				return 9;
+			}
+		}
 		return 0;
 	}
 	
