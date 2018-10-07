@@ -12,9 +12,7 @@ public class royalFlushTest {
 		pokerClass pokTest = new pokerClass();
 		
 		pokTest.constructCards(pokTest.readFile().get(0));
-		for(cardClass card : pokTest.AIP.returnHand()) {
-			System.out.println(card.returnCardRank());
-		}
+		
 		assertEquals(10,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	//Equivalence for for not flush
@@ -24,9 +22,7 @@ public class royalFlushTest {
 		pokerClass pokTest = new pokerClass();
 		
 		pokTest.constructCards(pokTest.readFile().get(1));
-		for(cardClass card : pokTest.AIP.returnHand()) {
-			System.out.println(card.returnCardRank());
-		}
+		
 		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	@Test
@@ -36,9 +32,7 @@ public class royalFlushTest {
 		pokerClass pokTest = new pokerClass();
 		
 		pokTest.constructCards(pokTest.readFile().get(2));
-		for(cardClass card : pokTest.AIP.returnHand()) {
-			System.out.println(card.returnCardRank());
-		}
+		
 		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	@Test
@@ -47,9 +41,7 @@ public class royalFlushTest {
 		pokerClass pokTest = new pokerClass();
 		
 		pokTest.constructCards(pokTest.readFile().get(3));
-		for(cardClass card : pokTest.AIP.returnHand()) {
-			System.out.println(card.returnCardRank());
-		}
+		
 		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 
