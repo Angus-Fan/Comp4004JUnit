@@ -57,7 +57,7 @@ public class deckClass {
 	
 	public void printDeck() {
 		for( cardClass card : deck) {
-			System.out.println(card.returnCardRank() + card.returnSuitName());
+			System.out.println(card.returnSuitName()+card.returnCardRank()  );
 		}
 	}
 	

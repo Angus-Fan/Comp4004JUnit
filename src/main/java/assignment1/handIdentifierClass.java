@@ -4,8 +4,33 @@ import java.util.*;
 
 public class handIdentifierClass {
 	
-	public boolean pokerHand(List<cardClass> cards) {
-		return false;
+	public int pokerHand(List<cardClass> cards) {
+		for(cardClass card : cards) {
+			System.out.println(card.returnCardRank());
+		}
+		boolean royalFlush =  true;
+		
+		if(determineFlush(cards)) {
+		
+			for(cardClass card : cards) {
+				
+				if(returnValueOfRank(card)==1||returnValueOfRank(card)==10||returnValueOfRank(card)==11||returnValueOfRank(card)==12||returnValueOfRank(card)==13) {
+					
+				}
+				else {
+					royalFlush = royalFlush & false;
+				}
+			}
+			if(royalFlush==true) {
+				return 10;
+			}
+		}
+		if(determineFlush(cards)) {
+			if(determineStraight(cards)) {
+				return 9;
+			}
+		}
+		return 0;
 	}
 	
 	//POKER HAND IDENTIFIERs
