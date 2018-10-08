@@ -34,7 +34,9 @@ public class handIdentifierClass {
 		if(determineRankOfPairs(cards)==5) {
 			return 8;
 		}
-		
+		if(determineRankOfPairs(cards)==4) {
+			return 7;
+		}
 		
 		
 		return 0;
