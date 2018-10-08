@@ -42,7 +42,7 @@ public class royalFlushTest {
 		
 		pokTest.constructCards(pokTest.readFile().get(3));
 		
-		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(9,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 
 }
