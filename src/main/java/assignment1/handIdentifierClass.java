@@ -5,10 +5,10 @@ import java.util.*;
 public class handIdentifierClass {
 	
 	public int pokerHand(List<cardClass> cards) {
-		/*
+		
 		for(cardClass card : cards) {
-			System.out.println(card.returnCardRank());
-		}*/
+			System.out.print(card.returnSuitName()+card.returnCardRank() +" ");
+		}
 		boolean royalFlush =  true;
 		
 		if(determineFlush(cards)) {
@@ -36,6 +36,9 @@ public class handIdentifierClass {
 		}
 		if(determineRankOfPairs(cards)==4) {
 			return 7;
+		}
+		if(determineFlush(cards)) {
+			return 6;
 		}
 		
 		
