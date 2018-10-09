@@ -11,6 +11,7 @@ public class deckClass {
 	
 	
 	public deckClass() {
+	    /**
 		for(int i=1;i<14;i++) {
 			
 			for (String suitName : suits) {
@@ -41,6 +42,7 @@ public class deckClass {
 		}
 		
 		Collections.shuffle(deck);		
+		**/
 	}
 	
 	public void addToDeck(cardClass card) {

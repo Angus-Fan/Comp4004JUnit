@@ -8,6 +8,12 @@ public class handClass {
 			hand.add(deck.drawCard());	
 		}
 	}
+	public void swap(deckClass deck,List<cardClass> cards) {
+		for(cardClass card : cards) {
+			hand.remove(card);
+		}
+		hand.add(deck.drawCard());
+	}
 	
 	public void addCard(cardClass card) {
 		hand.add(card);

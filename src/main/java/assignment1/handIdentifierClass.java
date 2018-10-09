@@ -48,12 +48,14 @@ public class handIdentifierClass {
 		return 0;
 	}
 	
-	public cardClass determineOneSwap(List<cardClass> cards) {
+	public List<cardClass> determineOneSwap(List<cardClass> cards) {
+		//System.out.println("DETERMINING");
+		List<cardClass> cardsToSwapOut = new ArrayList<cardClass>();
 		String breakerSuit = "";
 		cardClass cardOut = null;
 		Set<Integer> royalCount = new HashSet<Integer>();
 		if(determineFlush1Off(cards)) {
-			System.out.println("FlushBreaker is " + flushBreaker(cards).returnSuitName() +  flushBreaker(cards).returnCardRank());
+			//System.out.println("FlushBreaker is " + flushBreaker(cards).returnSuitName() +  flushBreaker(cards).returnCardRank());
 			breakerSuit = flushBreaker(cards).returnSuitName();
 			for(cardClass card : cards) {
 				
@@ -69,11 +71,52 @@ public class handIdentifierClass {
 				
 			}
 			if(royalCount.size()==4) {
-				return cardOut;
+				cardsToSwapOut.add(cardOut);
+				return cardsToSwapOut;
 			}
 		
 			
 		}
+		
+		if(determineFlush1Off(cards) && determineStraight1Off(cards)) {
+			
+			cardOut = straightFlushBreaker(cards);
+			//System.out.println("Card is [" + cardOut.returnSuitName() + cardOut.returnCardRank() +"]");
+			if(cardOut!=null) {
+				cardsToSwapOut.add(cardOut);
+				return cardsToSwapOut;
+			}
+		}
+		//Full house
+		Map<String,Integer> pairs = pairInHand(cards);
+		
+		//System.out.println("Res of pairs" +determineRankOfPairs(cards));
+		if(determineRankOfPairs(cards)==2) {
+			for(cardClass card : cards) {
+				//System.out.println(card.returnCardRank());
+				for(Map.Entry<String, Integer> entry : pairs.entrySet()) {
+					if(!pairs.containsKey(card.returnCardRank())) {
+						cardOut = card;
+						cardsToSwapOut.add(cardOut);
+						return cardsToSwapOut;
+					}
+				}
+			}
+		}
+		
+		if(determineFlush1Off(cards)) {
+			cardsToSwapOut.add( flushBreaker(cards));
+			return cardsToSwapOut;
+		}
+		//System.out.println("RIGHT BEFORE STRAIGHT");
+		if(determineStraight1Off(cards)) {
+			cardsToSwapOut.add( straightBreaker(cards));
+			return cardsToSwapOut;
+		}
+		if(determineFlush2Off(cards)) {
+			return flushBreaker2(cards);
+		}
+		
 		return null;
 	}
 	
@@ -93,6 +136,27 @@ public class handIdentifierClass {
 		}
 		
 		if(suitCount.containsValue(4)) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	public boolean determineFlush2Off(List<cardClass> cards) {
+		Map<String,Integer> suitCount = new HashMap<String,Integer>();
+		
+		for(cardClass card : cards) {
+			//System.out.println(card.returnSuitName());
+			if(!suitCount.containsKey(card.returnSuitName())) {
+				suitCount.put(card.returnSuitName(), 1);
+			}
+			else {
+				suitCount.put(card.returnSuitName(),suitCount.get(card.returnSuitName())+1);
+			}
+		}
+		
+		if(suitCount.containsValue(3)) {
 			return true;
 		}
 		
@@ -139,39 +203,115 @@ public class handIdentifierClass {
 		}
 		return null;
 	}
+	
+	
+	public List<cardClass> flushBreaker2(List<cardClass> cards) {
+		Map<String,Integer> suitCount = new HashMap<String,Integer>();
+		List<cardClass> returnCards = new ArrayList<cardClass>();
+		for(cardClass card : cards) {
+			//System.out.println(card.returnSuitName());
+			if(!suitCount.containsKey(card.returnSuitName())) {
+				suitCount.put(card.returnSuitName(), 1);
+			}
+			else {
+				suitCount.put(card.returnSuitName(),suitCount.get(card.returnSuitName())+1);
+			}
+		}
+		List<String> suitsToRemove = new ArrayList<String>();
+		for(Map.Entry<String, Integer> suitNum : suitCount.entrySet()) {
+			if(!(suitNum.getValue() == 3)) {
+				//System.out.print(suitNum.getKey());
+				
+				suitsToRemove.add(suitNum.getKey());
+			}
+		}
+		for(cardClass card : cards) {
+			//System.out.println(card.returnSuitName().equals(suitToRemove));
+			for(String suitToRemove : suitsToRemove) {
+				if(card.returnSuitName().equals(suitToRemove)) {
+					//System.out.println("RETURNED");
+					returnCards.add(card);
+					
+				}
+			}
+		}
+		return returnCards;
+		//return null;
+	}
 	public boolean determineStraight1Off(List<cardClass> cards) {
 		
 		int tolerance = 0;
 		List<Integer> cardRanks = returnCardRanks(cards);
 		Set<Integer> setOfCards = new HashSet<Integer>(cardRanks);
-		if(setOfCards.size()<5) {
-			return false;
-		}
-		//System.out.println("CARD LIST" + cardRanks);
 		
-		
-		for(Integer cardRank : cardRanks) {
+		System.out.println("CARD LIST" + cardRanks);
+		for(Integer cardRank : setOfCards) {
+			
+			
 			if(cardRank==13) {
-				if(!setOfCards.contains(1)) {
-					tolerance = tolerance + 1;
+				if(!setOfCards.contains(1) && !setOfCards.contains(cardRank-1)) {
+					System.out.println(cardRank + "TRIGGERED TOL");
+					tolerance = tolerance+1;
 				}
 			}
-			if(!setOfCards.contains(cardRank+1)) {
-				tolerance = tolerance + 1;
+			else if(cardRank==1) {
+				if(!setOfCards.contains(2) && !setOfCards.contains(13)) {
+					System.out.println(cardRank + "TRIGGERED TOL");
+					tolerance = tolerance+1;
+				}
+			}
+	
+			else if(!setOfCards.contains(cardRank+1) && !setOfCards.contains(cardRank-1)) {
+				System.out.println(cardRank + "TRIGGERED TOL");
+				tolerance = tolerance+1;
 			}
 		}
-		//System.out.print("TOLERANCE = " + tolerance);
-		if(tolerance>3 || tolerance<3) {
-			return false;
-		}
-		else {
+		System.out.println("THE TOLERANCE IS : " + tolerance);
+		if(tolerance==1) {
 			return true;
 		}
+		
+		else if(setOfCards.size()==4) {
+			if(tolerance==0) {
+				return true;
+			}
+		}
+		return false;
+		
 	}		
 	
 	public cardClass straightBreaker(List<cardClass> cards) {
+		int counter;
 		List<Integer> cardRanks = returnCardRanks(cards);
+		List<cardClass> dupes = new ArrayList<cardClass>();
+		//String highestSuit = "";
 		Set<Integer> setOfCards = new HashSet<Integer>(cardRanks);
+		Map<String,Integer> suitCount = new HashMap<String,Integer>();
+		//This is for if there are 2 but they are of diff suits remove the least suited one
+		/**
+		for(cardClass card : cards) {
+			//System.out.println(card.returnSuitName());
+			if(!suitCount.containsKey(card.returnSuitName())) {
+				suitCount.put(card.returnSuitName(), 1);
+			}
+			else {
+				suitCount.put(card.returnSuitName(),suitCount.get(card.returnSuitName())+1);
+			}
+		}**/
+		for(cardClass card : cards) {
+			System.out.println("CHECKING DUPE FOR" +card.returnCardRank());
+			counter = 0;
+			for(cardClass card2 : cards) {
+				if(card.returnCardRank().equals(card2.returnCardRank())){
+					
+					counter++;
+					System.out.println("Counter is " + counter);
+					if(counter==2) {
+						return card;
+					}
+				}
+			}
+		}
 		
 		//System.out.println("");
 		for(cardClass card : cards) {
@@ -215,7 +355,7 @@ public class handIdentifierClass {
 	public int determineRankOfPairs(List<cardClass> cards) {
 		//Four of a kind  = 5
 		//Full house      = 4
-		//Three of a kind = 3
+		//Three of a kind = 3		
 		//Two Pair        = 2
 		//Pair            = 1
 		

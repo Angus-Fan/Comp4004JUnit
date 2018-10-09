@@ -6,6 +6,7 @@ import java.util.*;
 public class pokerClass {
 	public handClass AIP = new handClass();
 	public handClass handToBeat = new handClass();
+	public deckClass deck = new deckClass();
 	
 	
 	public List<String[]> readFile(String fileName) {
@@ -54,7 +55,25 @@ public class pokerClass {
 			cardClass cardToAdd = new cardClass(remainder,substring);
 			handToBeat.addCard(cardToAdd);
 		}
+		if(cards.length>10) {
+			for(int t = 10;t<cards.length;t++) {
+				String substring = cards[t].substring(0, 1);		
+				String remainder = cards[t].substring(1);
+				cardClass cardToAdd = new cardClass(remainder,substring);
+				deck.addToDeck(cardToAdd);
+			}
+		}
+		//System.out.println(deck.checkLength());
+		/*
+		for(cardClass card : deck.returnDeck()) {
+			System.out.println("Card is [" + card.returnSuitName() + card.returnCardRank() +"]");
+		}*/
 		
+	}
+	
+	public int returnHandRes(List<cardClass> cards) {
+		handIdentifierClass HIC = new handIdentifierClass();
+		return HIC.pokerHand(cards);
 	}
 	
 	public  void game() {
@@ -62,17 +81,25 @@ public class pokerClass {
 		
 		int pokerAI;
 		int pokerBeat;
+		List<cardClass> cardsToSwap = new ArrayList<cardClass>();
 		
-		
-		pokerAI = HIC.pokerHand(AIP.returnHand());
-		pokerBeat = HIC.pokerHand(handToBeat.returnHand());
+		pokerAI = returnHandRes(AIP.returnHand());
+		pokerBeat = returnHandRes(handToBeat.returnHand());
 		
 		if(pokerAI==0) {
-			System.out.println(HIC.determineOneSwap(AIP.returnHand()).returnCardRank());
+			cardsToSwap = HIC.determineOneSwap(AIP.returnHand());
+			
+			for(cardClass card : cardsToSwap) {
+				System.out.println("Card is [" + card.returnSuitName() + card.returnCardRank() +"]");
+			}
+			
+			AIP.swap(deck, cardsToSwap);
+			
 			//System.out.println(HIC.determineOneSwap(AIP.returnHand()).returnSuitName());
 		}
-		System.out.println(pokerAI);
-		System.out.println(pokerBeat);
+		pokerAI = HIC.pokerHand(AIP.returnHand());
+		System.out.println("POKER AI : " + pokerAI);
+		System.out.println("POKER BEAT : " + pokerBeat);
 		
 	}
 	
