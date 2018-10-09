@@ -11,7 +11,7 @@ public class FourOfAKindTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(6));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(6));
 	
 		assertEquals(8,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}

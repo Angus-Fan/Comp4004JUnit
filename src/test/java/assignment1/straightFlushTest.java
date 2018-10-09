@@ -11,7 +11,7 @@ public class straightFlushTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(3));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(3));
 	
 		assertEquals(9,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
@@ -20,28 +20,28 @@ public class straightFlushTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(3));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(3));
 		
 		assertEquals(9,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	
-	@Test//TEST FOR STRAIGHT NOT FLUSH should be 0
+	@Test//TEST FOR STRAIGHT NOT FLUSH should be 5
 	public void testStraightFlush3() {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(4));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(4));
 		
-		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(5,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	@Test//Test FOR FLUSH NOT STRAIGHT
 	public void testStraightFlush4() {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(5));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(5));
 		
-		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(6,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 
 }

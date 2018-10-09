@@ -11,7 +11,7 @@ public class royalFlushTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(0));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(0));
 		
 		assertEquals(10,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
@@ -21,9 +21,9 @@ public class royalFlushTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(1));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(1));
 		
-		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(5,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	@Test
 	//Equavalence for not straight
@@ -31,16 +31,16 @@ public class royalFlushTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(2));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(2));
 		
-		assertEquals(0,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(6,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 	@Test
 	public void test4() {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(3));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(3));
 		
 		assertEquals(9,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}

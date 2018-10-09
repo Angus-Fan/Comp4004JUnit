@@ -8,10 +8,11 @@ public class pokerClass {
 	public handClass handToBeat = new handClass();
 	
 	
-	public List<String[]> readFile() {
+	public List<String[]> readFile(String fileName) {
 		List<String[]> games = new ArrayList<String[]>();
-		String path = "C:\\Users\\angus\\Desktop\\test.txt";
+		String path = "C:\\Users\\angus\\Desktop\\";
 		;
+		path = path + fileName;
 		File file = new File(path);
 		BufferedReader br = null;
 		try {
@@ -47,14 +48,34 @@ public class pokerClass {
 			AIP.addCard(cardToAdd);
 		}
 		for(int z = 5 ; z<10;z++) {
-			String substring = cards[z].substring(0, 0);		
-			String remainder = cards[z].substring(0);
+			String substring = cards[z].substring(0, 1);		
+			String remainder = cards[z].substring(1);
 			//System.out.println(substring + remainder);
-			cardClass cardToAdd = new cardClass(substring,remainder);
+			cardClass cardToAdd = new cardClass(remainder,substring);
 			handToBeat.addCard(cardToAdd);
 		}
 		
 	}
+	
+	public  void game() {
+		handIdentifierClass HIC = new handIdentifierClass();
+		
+		int pokerAI;
+		int pokerBeat;
+		
+		
+		pokerAI = HIC.pokerHand(AIP.returnHand());
+		pokerBeat = HIC.pokerHand(handToBeat.returnHand());
+		
+		if(pokerAI==0) {
+			System.out.println(HIC.determineOneSwap(AIP.returnHand()).returnCardRank());
+			//System.out.println(HIC.determineOneSwap(AIP.returnHand()).returnSuitName());
+		}
+		System.out.println(pokerAI);
+		System.out.println(pokerBeat);
+		
+	}
+	
 }
 	
 	

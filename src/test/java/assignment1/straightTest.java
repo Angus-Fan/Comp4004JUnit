@@ -11,7 +11,7 @@ public class straightTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(9));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(10));
 	
 		assertEquals(5,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}

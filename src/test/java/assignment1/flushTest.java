@@ -10,9 +10,9 @@ public class flushTest {
 		handIdentifierClass HIC = new handIdentifierClass();
 		pokerClass pokTest = new pokerClass();
 		
-		pokTest.constructCards(pokTest.readFile().get(8));
+		pokTest.constructCards(pokTest.readFile("test.txt").get(8));
 	
-		assertEquals(6,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(9,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 
 }

@@ -187,6 +187,73 @@ public class cardClassTester extends TestCase{
 		assertEquals(true,HIC.determineFlush(testHand3.returnHand()));
 	}
 	
+	public void testOneOffMethods() {
+		handIdentifierClass HIC = new handIdentifierClass();
+		handClass testHand3 = new handClass();
+		cardClass card11 = new cardClass("A","D");		
+		cardClass card12 = new cardClass("2","D");
+		cardClass card13 = new cardClass("J","D");
+		cardClass card14 = new cardClass("4","D");
+		cardClass card15 = new cardClass("7","S");
+		testHand3.addCard(card11);
+		testHand3.addCard(card12);
+		testHand3.addCard(card13);
+		testHand3.addCard(card14);
+		testHand3.addCard(card15);
+		assertEquals(true,HIC.determineFlush1Off(testHand3.returnHand()));
+		assertEquals(false,HIC.determineStraight1Off(testHand3.returnHand()));
+		//assertEquals(true,HIC.determineStraight(testHand3.returnHand()));
+		
+		
+		handClass testHand2 = new handClass();
+		cardClass card6 = new cardClass("A","S");		
+		cardClass card7 = new cardClass("10","S");
+		cardClass card8 = new cardClass("J","S");
+		cardClass card9 = new cardClass("Q","H");
+		cardClass card10 = new cardClass("K","H");
+		testHand2.addCard(card6);
+		testHand2.addCard(card7);
+		testHand2.addCard(card8);
+		testHand2.addCard(card9);
+		testHand2.addCard(card10);
+		assertEquals(false,HIC.determineStraight1Off(testHand2.returnHand()));
+		assertEquals(true,HIC.determineStraight(testHand2.returnHand()));
+		assertEquals(false,HIC.determineFlush1Off(testHand2.returnHand()));
+		
+		handClass testHand = new handClass();
+		
+		cardClass card1 = new cardClass("A","S");		
+		cardClass card2 = new cardClass("2","D");
+		cardClass card3 = new cardClass("10","D");
+		cardClass card4 = new cardClass("4","D");
+		cardClass card5 = new cardClass("5","D");
+		testHand.addCard(card1);
+		testHand.addCard(card2);
+		testHand.addCard(card3);
+		testHand.addCard(card4);
+		testHand.addCard(card5);
+		assertEquals("10",HIC.straightBreaker(testHand.returnHand()).returnCardRank());
+		assertEquals("S",HIC.flushBreaker(testHand.returnHand()).returnSuitName());
+		HIC.straightFlushBreaker(testHand.returnHand());
+		handClass testHand4 = new handClass();
+		cardClass card20 = new cardClass("10","D");		
+		cardClass card21 = new cardClass("J","D");
+		cardClass card22 = new cardClass("5","S");
+		cardClass card23 = new cardClass("K","D");
+		cardClass card24 = new cardClass("A","D");
+		testHand4.addCard(card20);
+		testHand4.addCard(card21);
+		testHand4.addCard(card22);
+		testHand4.addCard(card23);
+		testHand4.addCard(card24);
+		assertEquals(false,HIC.determineStraight1Off(testHand4.returnHand()));
+		assertEquals("5",HIC.straightBreaker(testHand4.returnHand()).returnCardRank());
+		assertEquals("S",HIC.flushBreaker(testHand4.returnHand()).returnSuitName());
+		assertEquals("S",HIC.straightFlushBreaker(testHand4.returnHand()).returnSuitName());
+		assertEquals("5",HIC.straightFlushBreaker(testHand4.returnHand()).returnCardRank());
+		
+	}
+	
 	
 
 }
