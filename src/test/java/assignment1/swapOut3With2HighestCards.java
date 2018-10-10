@@ -13,7 +13,7 @@ public class swapOut3With2HighestCards {
 		
 		pokTest.constructCards(pokTest.readFile("game.txt").get(10));
 		pokTest.game();
-		assertEquals(1,pokTest.returnHandRes(pokTest.AIP.returnHand()));
+		assertEquals(8,pokTest.returnHandRes(pokTest.AIP.returnHand()));
 	}
 
 }

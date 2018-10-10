@@ -14,6 +14,7 @@ public class gameTest {
 		pokTest.constructCards(pokTest.readFile("game.txt").get(0));
 		pokTest.game();
 		assertEquals(10,pokTest.returnHandRes(pokTest.AIP.returnHand()));
+		
 	}
 	
 }

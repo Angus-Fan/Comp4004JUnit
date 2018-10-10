@@ -85,7 +85,7 @@ public class handIdentifierClass {
 			}
 			if(royalCount.size()==4) {
 				cardsToSwapOut.add(cardOut);
-				System.out.println("ROYALFLUSH");
+				//System.out.println("ROYALFLUSH");
 				return cardsToSwapOut;
 			}
 		
@@ -98,7 +98,7 @@ public class handIdentifierClass {
 			//System.out.println("Card is [" + cardOut.returnSuitName() + cardOut.returnCardRank() +"]");
 			if(cardOut!=null) {
 				cardsToSwapOut.add(cardOut);
-				System.out.println("STRAIGHTFLUSH1OFF");
+				//System.out.println("STRAIGHTFLUSH1OFF");
 				return cardsToSwapOut;
 			}
 		}
@@ -113,7 +113,7 @@ public class handIdentifierClass {
 					if(!pairs.containsKey(card.returnCardRank())) {
 						cardOut = card;
 						cardsToSwapOut.add(cardOut);
-						System.out.println("FULLHOUSE");
+						//System.out.println("FULLHOUSE");
 						return cardsToSwapOut;
 					}
 				}
@@ -122,17 +122,17 @@ public class handIdentifierClass {
 		
 		if(determineFlush1Off(cards)) {
 			cardsToSwapOut.add( flushBreaker(cards));
-			System.out.println("1OFFFLUSH");
+			//System.out.println("1OFFFLUSH");
 			return cardsToSwapOut;
 		}
 		//System.out.println("RIGHT BEFORE STRAIGHT");
 		if(determineStraight1Off(cards)) {
 			cardsToSwapOut.add( straightBreaker(cards));
-			System.out.println("1OFFSTRAIGHT");
+			//System.out.println("1OFFSTRAIGHT");
 			return cardsToSwapOut;
 		}
 		if(determineFlush2Off(cards)) {
-			System.out.println("2OFFFLUSH");
+			//System.out.println("2OFFFLUSH");
 			return flushBreaker2(cards);
 		}
 		if(determineRankOfPairs(cards)==3) {
@@ -145,7 +145,7 @@ public class handIdentifierClass {
 					}
 				}
 			}
-			System.out.println("3 OF KIND");
+			//System.out.println("3 OF KIND");
 			
 			return cardsToSwapOut;
 		}
@@ -160,7 +160,7 @@ public class handIdentifierClass {
 					if(!(pairs.containsKey(card.returnCardRank()))) {
 						cardOut = card;
 						cardsToSwapOut.add(cardOut);
-						System.out.println("2 Pair swapping 1");
+						//System.out.println("2 Pair swapping 1");
 						return cardsToSwapOut;
 					}
 				}						
@@ -168,7 +168,7 @@ public class handIdentifierClass {
 		}
 		
 		if(determineRankOfPairs(cards)==1) {
-			System.out.print(cards.size());
+			//System.out.print(cards.size());
 			for(cardClass card : cards) {
 				if(!(pairs.containsKey(card.returnCardRank()))) {
 					cardsToSwapOut.add(card);
@@ -479,7 +479,7 @@ public class handIdentifierClass {
 				else {
 					if(cardRanks.get(0)!=findMin(cardRanks)) {
 						notStraightCounter++;
-						System.out.println("0");
+						//System.out.println("0");
 					}
 					if(cardRanks.get(1)!=cardRanks.get(0)+1 || cardRanks.get(1)!=cardRanks.get(0)+2 && plusTwo) {
 						
@@ -489,7 +489,7 @@ public class handIdentifierClass {
 						else {
 							notStraightCounter++;
 						}
-						System.out.println("1");
+						//System.out.println("1");
 					}
 					if(cardRanks.get(2)!=cardRanks.get(1)+1 && cardRanks.get(2)!=cardRanks.get(1)+2 && plusTwo) {
 						
@@ -499,7 +499,7 @@ public class handIdentifierClass {
 						else {
 							notStraightCounter++;
 						}
-						System.out.println("2"+ "plus two is: "+plusTwo);
+						//System.out.println("2"+ "plus two is: "+plusTwo);
 						
 					}
 					if(cardRanks.get(3)!=cardRanks.get(2)+1 && cardRanks.get(3)!=cardRanks.get(2)+2 && plusTwo) {
@@ -509,7 +509,7 @@ public class handIdentifierClass {
 						else {
 							notStraightCounter++;
 						}
-						System.out.println("3");
+						//System.out.println("3");
 					}
 					if(cardRanks.get(4)!=cardRanks.get(3)+1 && cardRanks.get(4)!=cardRanks.get(3)+2 && plusTwo) {
 						if(cardRanks.get(4)==cardRanks.get(3)+2) {
@@ -519,7 +519,7 @@ public class handIdentifierClass {
 							notStraightCounter++;
 						}
 					}
-					System.out.println(notStraightCounter);
+					//System.out.println(notStraightCounter);
 					if(notStraightCounter==1) {
 						return true;
 					}
