@@ -86,18 +86,28 @@ public class pokerClass {
 		pokerAI = returnHandRes(AIP.returnHand());
 		pokerBeat = returnHandRes(handToBeat.returnHand());
 		
-		if(pokerAI==0) {
+		if(pokerAI<5) {
 			cardsToSwap = HIC.determineOneSwap(AIP.returnHand());
-			
+			/*
 			for(cardClass card : cardsToSwap) {
-				System.out.println("Card is [" + card.returnSuitName() + card.returnCardRank() +"]");
-			}
+				System.out.println("Card to swap is[" + card.returnSuitName() + card.returnCardRank() +"]");
+			}*/
 			
 			AIP.swap(deck, cardsToSwap);
 			
 			//System.out.println(HIC.determineOneSwap(AIP.returnHand()).returnSuitName());
 		}
 		pokerAI = HIC.pokerHand(AIP.returnHand());
+		System.out.print("AIP HAND : ");
+		for(cardClass card : AIP.returnHand()) {
+			System.out.print(card.returnSuitName()+card.returnCardRank()+" ");
+		}
+		System.out.println("");
+		System.out.print("Beat HAND: ");
+		for(cardClass card : handToBeat.returnHand()) {
+			System.out.print(card.returnSuitName()+card.returnCardRank()+" ");
+		}
+		System.out.println("");
 		System.out.println("POKER AI : " + pokerAI);
 		System.out.println("POKER BEAT : " + pokerBeat);
 		

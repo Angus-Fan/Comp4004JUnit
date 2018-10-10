@@ -12,7 +12,7 @@ public class flushTest {
 		
 		pokTest.constructCards(pokTest.readFile("test.txt").get(8));
 	
-		assertEquals(9,HIC.pokerHand(pokTest.AIP.returnHand()));
+		assertEquals(6,HIC.pokerHand(pokTest.AIP.returnHand()));
 	}
 
 }

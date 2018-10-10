@@ -246,6 +246,7 @@ public class cardClassTester extends TestCase{
 		testHand4.addCard(card22);
 		testHand4.addCard(card23);
 		testHand4.addCard(card24);
+		System.out.println("NOW DOING THING");
 		assertEquals(true,HIC.determineStraight1Off(testHand4.returnHand()));
 		assertEquals("5",HIC.straightBreaker(testHand4.returnHand()).returnCardRank());
 		assertEquals("S",HIC.flushBreaker(testHand4.returnHand()).returnSuitName());

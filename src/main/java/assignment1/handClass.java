@@ -10,9 +10,12 @@ public class handClass {
 	}
 	public void swap(deckClass deck,List<cardClass> cards) {
 		for(cardClass card : cards) {
+			//System.out.print("REMOVING" +card.returnSuitName()+card.returnCardRank()+"");
 			hand.remove(card);
+			hand.add(deck.drawCard());
 		}
-		hand.add(deck.drawCard());
+		
+		
 	}
 	
 	public void addCard(cardClass card) {
