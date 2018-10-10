@@ -763,6 +763,9 @@ public class handIdentifierClass {
 	
 	
 	////////////////////////////////////HELPER METHODS
+	public int straightFlushSuitRank(List<cardClass> cards) {
+		return returnValueOfSuit(cards.get(0));
+	}
 	public List<Integer> returnCardSuits(List<cardClass> cards){
 		List<Integer> cardRankList = new ArrayList<Integer>();
 		for(cardClass card : cards) {
@@ -792,6 +795,8 @@ public class handIdentifierClass {
 			
 		}
 	}
+	
+	
 	
 	public int findMin(List<Integer> list) {
 		return Collections.min(list);
@@ -832,6 +837,27 @@ public class handIdentifierClass {
 		else {
 			//System.out.println("["+card.returnCardRank()+"]");
 			return Integer.parseInt(card.returnCardRank());
+		}
+		
+	}
+	
+	public int returnValueOfRankFromString(String card) {
+		//System.out.println(card.returnCardRank());
+		if(card.equals("A")) {
+			return 1;
+		}
+		else if(card.equals("J")) {
+			return 11;
+		}
+		else if(card.equals("Q")) {
+			return 12;
+		}
+		else if(card.equals("K")) {
+			return 13;
+		}
+		else {
+			//System.out.println("["+card.returnCardRank()+"]");
+			return Integer.parseInt(card);
 		}
 		
 	}

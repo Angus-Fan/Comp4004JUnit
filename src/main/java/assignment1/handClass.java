@@ -9,9 +9,13 @@ public class handClass {
 		}
 	}
 	public void swap(deckClass deck,List<cardClass> cards) {
+		int counter=0;
 		for(cardClass card : cards) {
 			//System.out.print("REMOVING" +card.returnSuitName()+card.returnCardRank()+"");
 			hand.remove(card);
+			counter++;
+		}
+		for(int i=0;i<counter;i++) {
 			hand.add(deck.drawCard());
 		}
 		
