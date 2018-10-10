@@ -87,7 +87,16 @@ public class pokerClass {
 		
 		pokerAI = returnHandRes(AIP.returnHand());
 		pokerBeat = returnHandRes(handToBeat.returnHand());
-		
+		System.out.print("AIP HAND : ");
+		for(cardClass card : AIP.returnHand()) {
+			System.out.print(card.returnSuitName()+card.returnCardRank()+" ");
+		}
+		System.out.println("");
+		System.out.print("Beat HAND: ");
+		for(cardClass card : handToBeat.returnHand()) {
+			System.out.print(card.returnSuitName()+card.returnCardRank()+" ");
+		}
+		System.out.println("");
 		if(pokerAI<5) {
 			cardsToSwap = HIC.determineOneSwap(AIP.returnHand());
 			System.out.print("cards to swap are : ");
