@@ -77,6 +77,8 @@ public class pokerClass {
 	}
 	
 	public  void game() {
+		//I would consider the test for the independancy of the AI hand being independant shown 
+		//Whenever this is called as it shows the hand before and after the exchange
 		handIdentifierClass HIC = new handIdentifierClass();
 		
 		int pokerAI;

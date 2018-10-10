@@ -108,6 +108,17 @@ public class cardClassTester extends TestCase{
 		
 	}*/
 	
+	///Showing that highest card and highest suit work
+	public void testSuitAndRank() {
+		handClass testHand = new handClass();
+		handIdentifierClass HIC = new handIdentifierClass();
+		cardClass testCard1 = new cardClass("A","D");
+		cardClass testCard2 = new cardClass("Q","S");
+		testHand.addCard(testCard1);
+		testHand.addCard(testCard2);
+		assertEquals("A",HIC.determineHighestCard(testHand.returnHand()).returnCardRank());
+		assertEquals(true,HIC.returnValueOfSuit(testCard1)<HIC.returnValueOfSuit(testCard2));
+	}
 	//Test handIdentifier methods
 	public void testDetermineCard() {
 		//First four cards are same card of different suits
