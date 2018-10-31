@@ -33,9 +33,11 @@ public class handIdentifierClass {
 			}
 		}
 		if(determineRankOfPairs(cards)==5) {
+			
 			return 8;
 		}
 		if(determineRankOfPairs(cards)==4) {
+			
 			return 7;
 		}
 		if(determineFlush(cards)) {
@@ -44,6 +46,7 @@ public class handIdentifierClass {
 		if(determineStraight(cards)) {
 			return 5;
 		}
+		//Iteration 2 of for assignment 2 needs to be changed at this position
 		if(determineRankOfPairs(cards)==3) {
 			return 4;
 		}
@@ -54,6 +57,7 @@ public class handIdentifierClass {
 			return 2;
 		}
 		else {
+			
 			return 1;
 		}
 		
@@ -61,7 +65,7 @@ public class handIdentifierClass {
 	}
 	
 	public List<cardClass> determineOneSwap(List<cardClass> cards) {
-		//System.out.println("DETERMINING");
+		///System.out.println("DETERMINING");
 		Map<String,Integer> pairs = pairInHand(cards);
 		List<cardClass> cardsToSwapOut = new ArrayList<cardClass>();
 		String breakerSuit = "";
@@ -135,6 +139,7 @@ public class handIdentifierClass {
 			//System.out.println("2OFFFLUSH");
 			return flushBreaker2(cards);
 		}
+		//HERE
 		if(determineRankOfPairs(cards)==3) {
 		
 			for(cardClass card : cards) {
@@ -143,6 +148,13 @@ public class handIdentifierClass {
 						
 						cardsToSwapOut.add(card);
 					}
+				}
+			}
+			int minRank = findMin(returnCardRanks(cardsToSwapOut));
+			for(cardClass card : cardsToSwapOut) {
+				if( returnValueOfRankFromString(card.returnCardRank())==minRank) {
+					cardsToSwapOut.remove(card);
+					break;
 				}
 			}
 			//System.out.println("3 OF KIND");
@@ -154,6 +166,7 @@ public class handIdentifierClass {
 			cardsToSwapOut=  threeSequenceCards(cards);
 			return cardsToSwapOut;
 		}
+		//Here
 		if(determineRankOfPairs(cards)==2) {
 			for(Map.Entry<String, Integer> entry : pairs.entrySet()) {
 				for(cardClass card : cards) {
@@ -176,7 +189,7 @@ public class handIdentifierClass {
 			}
 			return cardsToSwapOut;
 		}
-		List<cardClass> temp = cards;
+		List<cardClass> temp =  new ArrayList<cardClass>(cards);
 		cardOut = determineHighestCard(temp);
 		cardsToSwapOut.add(cardOut);
 		temp.remove(cardOut);
@@ -239,8 +252,10 @@ public class handIdentifierClass {
 	public cardClass straightFlushBreaker(List<cardClass> cards) {
 		cardClass flushBreaker = flushBreaker(cards);
 		cardClass rankBreaker = straightBreaker(cards);
-	//	System.out.print("FLUSH BREAKER IS" +flushBreaker.returnSuitName() + flushBreaker.returnCardRank());
-	//	System.out.print("Straight BREAKER IS" +rankBreaker.returnSuitName() + rankBreaker.returnCardRank());
+		
+		//System.out.print("FLUSH BREAKER IS" +flushBreaker.returnSuitName() + flushBreaker.returnCardRank());
+		//System.out.print("Straight BREAKER IS" +rankBreaker.returnSuitName() + rankBreaker.returnCardRank());
+		
 		if( (flushBreaker.returnCardRank().equals(rankBreaker.returnCardRank()) && (flushBreaker.returnSuitName().equals(rankBreaker.returnSuitName())))){
 			return flushBreaker;
 		}
@@ -433,10 +448,7 @@ public class handIdentifierClass {
 				Collections.sort(cardRanks);
 				Set<Integer> setOfCards = new HashSet<Integer>(cardRanks);
 				boolean plusTwo = true;
-				/*
-				for(int i = 0 ;i<5;i++) {
-					System.out.println(cardRanks.get(i));
-				}*/
+				
 				if(findMin(cardRanks)==1) {
 					int smallA = 0;
 					int bigA = 0;
@@ -472,6 +484,7 @@ public class handIdentifierClass {
 					}
 					//System.out.println(bigA);
 					if(bigA==1 || smallA == 1) {
+						System.out.println("ITS TRU");
 						return true;
 					}
 				}
@@ -521,6 +534,7 @@ public class handIdentifierClass {
 					}
 					//System.out.println(notStraightCounter);
 					if(notStraightCounter==1) {
+						System.out.println("ITS TRU2");
 						return true;
 					}
 				}
@@ -534,13 +548,12 @@ public class handIdentifierClass {
 		//int straightCount = 1;
 		
 		
-		int wrongRank = 0;
+		
 		boolean plus2Used = true;
 		List<Integer> cardRanks = returnCardRanks(cards);
 		Collections.sort(cardRanks);
 		
-		int nextInt1 = cardRanks.get(0)+1;
-		int nextInt2 = cardRanks.get(0)+9;
+	
 		Set<Integer> setOfCards = new HashSet<Integer>(cardRanks);
 			
 			plus2Used = true;
@@ -564,7 +577,14 @@ public class handIdentifierClass {
 				}
 				else {
 					nextInt++;
-				}					
+				}
+				if(plus2Used==false&&i==4) {
+					for(cardClass card : cards) {
+						if(returnValueOfRank(card)==cardRanks.get(4)) {
+							return card;
+						}
+					}
+				}
 			}
 			
 			if(setOfCards.contains(1) && setOfCards.contains(13)) {
@@ -652,7 +672,7 @@ public class handIdentifierClass {
 		return 0;
 	}
 	public boolean determineStraight(List<cardClass> cards) {
-		int minRank = 0;
+		
 		//int straightCount = 1;
 		
 		/**
