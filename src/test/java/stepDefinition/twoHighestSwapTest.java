@@ -17,7 +17,7 @@ public class twoHighestSwapTest {
 	public void ai_hand_is_one_card_off_from_royal_flush() throws Throwable {
 		System.out.println("THIS IS THE TEST FOR SWAP FOR THREE CARDS");
 		pokTest.constructCards(pokTest.readFile("assignment2Features.txt").get(9));
-	}
+	}	
 	
 	@When("^AI hand swaps its three other cards$")
 	public void ai_hand_swaps_its_hand_for_a_card_from_deck() throws Throwable {

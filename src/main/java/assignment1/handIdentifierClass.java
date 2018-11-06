@@ -153,11 +153,12 @@ public class handIdentifierClass {
 			int minRank = findMin(returnCardRanks(cardsToSwapOut));
 			for(cardClass card : cardsToSwapOut) {
 				if( returnValueOfRankFromString(card.returnCardRank())==minRank) {
-					cardsToSwapOut.remove(card);
+					cardsToSwapOut = new ArrayList<cardClass>();
+					cardsToSwapOut.add(card);
 					break;
 				}
 			}
-			//System.out.println("3 OF KIND");
+			System.out.println("3 OF KIND");
 			
 			return cardsToSwapOut;
 		}
@@ -484,7 +485,7 @@ public class handIdentifierClass {
 					}
 					//System.out.println(bigA);
 					if(bigA==1 || smallA == 1) {
-						System.out.println("ITS TRU");
+						//System.out.println("ITS TRU");
 						return true;
 					}
 				}
@@ -534,7 +535,7 @@ public class handIdentifierClass {
 					}
 					//System.out.println(notStraightCounter);
 					if(notStraightCounter==1) {
-						System.out.println("ITS TRU2");
+						//System.out.println("ITS TRU2");
 						return true;
 					}
 				}
@@ -565,12 +566,13 @@ public class handIdentifierClass {
 					plus2Used=false;
 				}
 				//System.out.print(cardRanks.get(i) +""+nextInt);
-				if(cardRanks.get(i)!=nextInt) {
+				else if(cardRanks.get(i)!=nextInt) {
 					//System.out.println("HERE");
 						
 					for(cardClass card : cards) {
 						if(returnValueOfRank(card)==cardRanks.get(i)){
-							//System.out.println("EVEN HERE");
+							//System.out.println("EVEN HERE1");
+							//System.out.println("CARD DETERMINED Is" + card.returnCardRank());
 							return card;
 						}
 					}
@@ -603,7 +605,7 @@ public class handIdentifierClass {
 							
 						for(cardClass card : cards) {
 							if(returnValueOfRank(card)==cardRanks.get(i)){
-					//			System.out.println("EVEN HERE");
+								System.out.println("EVEN HERE");
 								return card;
 							}
 						}
