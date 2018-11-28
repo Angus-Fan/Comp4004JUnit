@@ -17,4 +17,7 @@ public class cardClass {
 	public String returnSuitName() {
 		return suitName;
 	}
+	public String returnCardString() {
+		return suitName+rank;
+	}
 }

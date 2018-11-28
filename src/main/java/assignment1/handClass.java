@@ -8,6 +8,13 @@ public class handClass {
 			hand.add(deck.drawCard());	
 		}
 	}
+	
+
+	public void drawCardsFromFullDeck(FullDeckClass deck) {	
+		for(int i=0;i<5;i++) {
+			hand.add(deck.drawCard());	
+		}
+	}
 	public void swap(deckClass deck,List<cardClass> cards) {
 		int counter=0;
 		printHand();
