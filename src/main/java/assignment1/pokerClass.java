@@ -422,6 +422,310 @@ public class pokerClass {
 	
 	
 	}
+	
+	public handClass returnWinnerOf(handClass h1, handClass h2) {
+		handIdentifierClass HIC = new handIdentifierClass();
+		int winner = 0;
+		int pokerAI = returnHandRes(h1.returnHand());
+		int pokerBeat = returnHandRes(h2.returnHand());
+		if(pokerAI>pokerBeat) {
+			System.out.println("The AI wins");
+			winner = 0;
+		}
+		else if(pokerBeat>pokerAI) {
+			System.out.println("The opponent wins");
+			winner = 1;
+		}
+		else if(pokerBeat==pokerAI) {
+			if(pokerAI == 10) {
+				if(HIC.straightFlushSuitRank(AIP.returnHand())>HIC.straightFlushSuitRank(handToBeat.returnHand())) {
+					System.out.println("The AI wins, higher suit");
+					winner = 0;
+				}
+				else {
+					System.out.println("The opponent wins, higher suit");
+					winner = 1;
+				}
+			}
+			if(pokerAI==9) {
+				if( HIC.returnValueOfRank(HIC.determineHighestCard(AIP.returnHand()))>HIC.returnValueOfRank(HIC.determineHighestCard(handToBeat.returnHand()))){
+					System.out.println("The AI wins, higher rank");
+					winner = 0;
+				}
+				else if( HIC.returnValueOfRank(HIC.determineHighestCard(AIP.returnHand()))<HIC.returnValueOfRank(HIC.determineHighestCard(handToBeat.returnHand()))){
+					System.out.println("The opponent wins, higher rank");
+					winner = 1;
+				}
+				else {
+					if(HIC.straightFlushSuitRank(AIP.returnHand())>HIC.straightFlushSuitRank(handToBeat.returnHand())) {
+						System.out.println("The AI wins, higher suit");
+						winner = 0;
+					}
+					else {
+						System.out.println("The opponent wins, higher suit");
+						winner = 1;
+					}
+					
+				}
+			}
+			if(pokerAI==8) {
+				if( HIC.returnValueOfRank(HIC.determineHighestCard(AIP.returnHand()))>HIC.returnValueOfRank(HIC.determineHighestCard(handToBeat.returnHand()))){
+					System.out.println("The AI wins, higher rank");
+					winner = 0;
+				}
+				else {
+					System.out.println("The opponent wins, higher rank");
+					winner = 1;
+				}
+			}
+			if(pokerAI==7 || pokerAI==4) {
+				Map<String,Integer> pair1 = HIC.pairInHand(AIP.returnHand());
+				Map<String,Integer> pair2 = HIC.pairInHand(handToBeat.returnHand());
+				int int1=0;
+				int int2=0;
+				if(pokerAI==7) {
+					for(Entry<String, Integer> entry : pair1.entrySet()) {
+						if(entry.getValue()==3) {
+							int1 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+					}
+					for(Entry<String, Integer> entry : pair2.entrySet()) {
+						if(entry.getValue()==3) {
+							int2 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+					}
+					if(int1>int2) {
+						System.out.println("The AI wins, higher rank");
+						winner = 0;
+					}
+					else if(int2>int1) {
+						System.out.println("The opponent wins, higher rank");		
+						winner = 1;
+					}
+				}
+				else if (pokerAI==4) {
+					for(Entry<String, Integer> entry : pair1.entrySet()) {
+						if(entry.getValue()==2) {
+							int1 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+					}
+					for(Entry<String, Integer> entry : pair2.entrySet()) {
+						if(entry.getValue()==2) {
+							int2 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+					}
+					if(int1>int2) {
+						System.out.println("The AI wins, higher rank");
+						winner = 0;
+					}
+					else if(int2>int1) {
+						System.out.println("The opponent wins, higher rank");		
+						winner = 1;
+					}
+				}
+			}
+			if(pokerAI==6) {
+				boolean same = true;
+				Set<Integer> aiInt = new HashSet<Integer>(HIC.returnCardRanks(AIP.returnHand()));
+				Set<Integer> beatInt = new HashSet<Integer>(HIC.returnCardRanks(handToBeat.returnHand()));
+				for(Integer n : aiInt) {
+					if(beatInt.contains(n)) {
+						same = same && true;
+					}
+					else {
+						same = same && false;
+					}
+				}
+					if(same==false) {
+						int aiHigh = HIC.returnValueOfRank(HIC.determineHighestCard(AIP.returnHand()));
+						int beatHigh = HIC.returnValueOfRank(HIC.determineHighestCard(handToBeat.returnHand()));
+						if(aiHigh>beatHigh) {
+							System.out.println("The AI wins, higher rank");
+							winner = 0;
+						}
+						else {
+							System.out.println("The opponent wins, higher rank");		
+							winner = 1;
+						}
+					}
+					if(same==true) {
+						
+							if(HIC.straightFlushSuitRank(AIP.returnHand())>HIC.straightFlushSuitRank(handToBeat.returnHand())) {
+								System.out.println("The AI wins, higher suit");
+								winner = 0;
+							}
+							else {
+								System.out.println("The opponent wins, higher suit");
+								winner = 1;
+							}
+							
+					}
+					
+				
+			}
+			if(pokerAI==5) {
+				if( HIC.returnValueOfRank(HIC.determineHighestCard(AIP.returnHand()))>HIC.returnValueOfRank(HIC.determineHighestCard(handToBeat.returnHand()))){
+					System.out.println("The AI wins, higher rank");
+					winner = 0;
+				}
+				else if( HIC.returnValueOfRank(HIC.determineHighestCard(AIP.returnHand()))<HIC.returnValueOfRank(HIC.determineHighestCard(handToBeat.returnHand()))){
+					System.out.println("The opponent wins, higher rank");
+					winner = 1;
+				}
+				else {
+					if(HIC.returnValueOfSuit(HIC.determineHighestCard(AIP.returnHand())) > HIC.returnValueOfSuit(HIC.determineHighestCard(handToBeat.returnHand()))) {
+						System.out.println("The AI wins, higher suit");
+						winner = 0;
+					}
+					else {
+						System.out.println("The opponent wins, higher suit");
+						winner = 1;
+					}
+					
+				}
+			}
+			if(pokerAI==3) {
+				Map<String,Integer> pair1 = HIC.pairInHand(AIP.returnHand());
+				Map<String,Integer> pair2 = HIC.pairInHand(handToBeat.returnHand());
+				int int1=0;
+				int int2=0;
+				int int3=0;
+				int int4=0;
+				for(Entry<String, Integer> entry : pair1.entrySet()) {
+					if(entry.getValue()==2) {
+						if(HIC.returnValueOfRankFromString(entry.getKey())>int1) {						
+							int1 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+						
+					}
+				}
+				for(Entry<String, Integer> entry : pair2.entrySet()) {
+					if(entry.getValue()==2) {
+						if(HIC.returnValueOfRankFromString(entry.getKey())>int2) {						
+							int2 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+						
+					}
+				}
+				if(int1>int2) {
+					System.out.println("The AI wins, higher rank");
+					winner = 0;
+				}
+				else if(int2>int1) {
+					System.out.println("The opponent wins, higher rank");				
+					winner = 1;
+				}
+				
+				else {
+					for(cardClass card : AIP.returnHand()) {
+						if(HIC.returnNumberToRank(int1).equals(card.returnCardRank())) {
+							int3 = HIC.returnValueOfSuit(card);
+						}
+					}
+					for(cardClass card : handToBeat.returnHand()) {
+						if(HIC.returnNumberToRank(int1).equals(card.returnCardRank())) {
+							int4 = HIC.returnValueOfSuit(card);
+						}
+					}
+					if(int3>int4) {
+						System.out.println("The AI wins, higher suit");
+						winner = 0;
+					
+					}
+					else {
+						System.out.println("The opponent wins, higher suit");
+						winner = 1;
+					}
+				}
+				
+			}
+			if(pokerAI==2) {
+				Map<String,Integer> pair1 = HIC.pairInHand(AIP.returnHand());
+				Map<String,Integer> pair2 = HIC.pairInHand(handToBeat.returnHand());
+				int int1=0;
+				int int2=0;
+				int int3=0;
+				int int4=0;
+				for(Entry<String, Integer> entry : pair1.entrySet()) {
+					if(entry.getValue()==2) {
+						if(HIC.returnValueOfRankFromString(entry.getKey())>int1) {						
+							int1 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+						
+					}
+				}
+				for(Entry<String, Integer> entry : pair2.entrySet()) {
+					if(entry.getValue()==2) {
+						if(HIC.returnValueOfRankFromString(entry.getKey())>int2) {						
+							int2 = HIC.returnValueOfRankFromString(entry.getKey());
+						}
+						
+					}
+				}
+				if(int1>int2) {
+					System.out.println("The AI wins, higher rank");
+					winner = 0;
+				}
+				else if(int2>int1) {
+					System.out.println("The opponent wins, higher rank");		
+					winner = 1;
+				}
+				
+				else {
+					for(cardClass card : AIP.returnHand()) {
+						if(HIC.returnNumberToRank(int1).equals(card.returnCardRank())) {
+							int3 = HIC.returnValueOfSuit(card);
+						}
+					}
+					for(cardClass card : handToBeat.returnHand()) {
+						if(HIC.returnNumberToRank(int1).equals(card.returnCardRank())) {
+							int4 = HIC.returnValueOfSuit(card);
+						}
+					}
+					if(int3>int4) {
+						System.out.println("The AI wins, higher suit");
+						winner = 0;
+					
+					}
+					else {
+						System.out.println("The opponent wins, higher suit");
+						winner = 1;
+					}
+				}
+				
+			}
+			if(pokerAI==1) {
+				cardClass card1 = HIC.determineHighestCard(AIP.returnHand());
+				cardClass card2 = HIC.determineHighestCard(handToBeat.returnHand());
+				if(HIC.returnValueOfRank(card1)>HIC.returnValueOfRank(card2)) {
+					System.out.println("The AI wins, higher rank");
+					winner = 0;
+				}
+				else if(HIC.returnValueOfRank(card1)<HIC.returnValueOfRank(card2)) {
+					System.out.println("The opponent wins, higher suit");
+					winner = 1;
+				}
+				else {
+					if(HIC.returnValueOfSuit(card1)>HIC.returnValueOfSuit(card2)) {
+						System.out.println("The AI wins, higher suit");
+						winner = 0;
+					}
+					else {
+						System.out.println("The opponent wins, higher suit");
+						winner = 1;
+					}
+				}
+			}
+			
+			
+		}
+		if(winner==0) {
+			return h1;
+	
+		}
+		else{return h2;}
+		
+	}
 	public int returnWinner() {
 		return winner;
 	}

@@ -67,12 +67,17 @@ public class FullDeckClass {
 	//Something of the same kind already existed, therefore no duplicates
 	//should exist if returns true
 	public void removeFromDeck(List<cardClass> cardsToRemove) {
-		for(cardClass card : cardsToRemove) {
-			for(cardClass deckCard : deck) {
-				if(card.returnSuitName()==deckCard.returnSuitName()) {
-					deck.remove(deckCard);
+		List<cardClass> listOfCardsToRemove = new ArrayList<cardClass>();
+		for(cardClass card : deck) {
+			for(cardClass cardToRemove : cardsToRemove) {
+				if(card.returnCardString().equals(cardToRemove.returnCardString())) {
+					listOfCardsToRemove.add(card);
 				}
 			}
+		}
+		List<cardClass> listOfCardsToRemoveCopy = new ArrayList<cardClass>(listOfCardsToRemove);
+		for(cardClass card : listOfCardsToRemoveCopy) {
+			deck.remove(card);
 		}
 	}
 	

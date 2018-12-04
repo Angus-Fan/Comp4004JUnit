@@ -16,6 +16,7 @@ public class thingTest {
 			driver.findElement(By.id("playerInput")).sendKeys("3");
 			driver.findElement(By.id("realPlayerInput")).sendKeys("2");
 			driver.findElement(By.id("submitButt")).click();
+		
 		}
 		catch(Exception e) {
 			System.out.println(e);
